@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://www.gstatic.com https://www.googleapis.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self' https://*.firebaseio.com https://*.googleapis.com https://*.gstatic.com https://*.firebasestorage.app wss: https:; object-src 'none'; base-uri 'none'; frame-ancestors 'self';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="no-referrer">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"/>
+  <title>GhostCHAT 👻⚡ — E2E ONLY</title>
+  <link rel="icon" href="assets/ghost.png"/>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+  <canvas id="matrixBG" aria-hidden="true"></canvas>
+
+  <div class="app" id="appBox">
+    <header class="appHeader">
+      <h1>👻⚡ GhostCHAT</h1>
+      <div class="chips">
+        <button class="chip"  title="Telegram">✈️ Telegram</button>
+      </div>
+    </header>
+
+    <div class="topControls">
+      <button id="btnCreate" class="btn primary">Создать комнату</button>
+      <button id="btnClear" class="btn ghost">Очистить</button>
+    </div>
+
+    <div class="joinRow">
+      <input id="joinInput" placeholder="Код комнаты или ссылка (с ключом)" spellcheck="false" autocomplete="off"/>
+      <button id="btnJoin" class="btn success">Войти</button>
+    </div>
+
+    <div id="roomsList" class="roomsList"></div>
+
+    <div class="qrPanicRow">
+      <button id="btnQR" class="btn">🟩 QR/Ссылка</button>
+      <button id="btnPanic" class="btn panic">🚨 Палево</button>
+    </div>
+
+    <div id="qrBox" class="qrBox qrHidden" aria-hidden="true">
+      <div id="inviteLink" class="inviteLink"></div>
+      <div class="qrRow">
+        <div id="qrcode" class="qrcode" aria-label="QR код приглашения"></div>
+      </div>
+      <div class="qrActions">
+        <button id="btnCopy" class="btn small">Копировать ссылку</button>
+        <button id="btnShowKey" class="btn small">Показать ключ</button>
+        <button id="btnKeyQR" class="btn small">QR ключа</button>
+        <button id="btnResetKey" class="btn small">Сбросить ключ</button>
+      </div>
+      <div class="keyInfo">Ключ сохранён в браузере (E2E включён)</div>
+    </div>
+
+    <div id="chatArea" class="chatArea"></div>
+
+    <div class="inputBar">
+      <button id="attachBtn" class="circle left" title="Скрепка">📎</button>
+      <textarea id="msgInput" rows="1" placeholder="Сообщение..."></textarea>
+      <button id="btnSend" class="circle send" title="Отправить">➡️</button>
+    </div>
+
+    <div class="footerNote">GhostCHAT — приватный анонимный чат • E2E ONLY</div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
