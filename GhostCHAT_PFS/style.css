@@ -1,0 +1,50 @@
+:root{--neon:#00ff90;--bg:#000c05;--card:#001a0f;--aura:rgba(0,255,144,0.15);--panic:#ff3b3b}
+*{box-sizing:border-box}
+html,body{height:100%;width:100%;margin:0;background:var(--bg);color:#dfffe8;font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;overflow:hidden;position:fixed;inset:0;touch-action:none;}
+canvas#matrixBG{position:fixed;inset:0;z-index:-1;opacity:.18;filter:blur(.6px) contrast(1.15)}
+.app{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:760px;max-width:94vw;height:94svh;margin:0 auto;background:linear-gradient(180deg, rgba(0,18,8,.65), rgba(0,20,10,.55));border:1px solid rgba(0,255,144,.22);border-radius:18px;box-shadow:0 0 0 2px rgba(0,255,144,.06), 0 0 60px 10px var(--aura) inset, 0 10px 40px rgba(0,0,0,.6);display:flex;flex-direction:column;overflow:hidden}
+.appHeader{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:rgba(0,30,20,.45);border-bottom:1px solid rgba(0,255,144,.18)}
+.appHeader h1{margin:0;color:var(--neon);text-shadow:0 0 12px var(--aura)}
+.chips{display:flex;gap:8px}
+.chip{background:transparent;border:1px solid var(--neon);color:var(--neon);padding:8px 12px;border-radius:999px;cursor:pointer}
+.chip:hover{box-shadow:0 0 10px var(--aura) inset, 0 0 10px var(--aura)}
+.btn{background:rgba(0,40,25,.6);border:1px solid rgba(0,255,144,.25);color:var(--neon);padding:10px 14px;border-radius:12px;cursor:pointer;transition:.18s;font-weight:600}
+.btn:hover{transform:translateY(-1px);box-shadow:0 0 0 2px rgba(0,255,144,.15) inset, 0 0 18px var(--aura)}
+.btn.primary{background:rgba(0,70,40,.7)} .btn.success{background:rgba(0,60,40,.6)} .btn.ghost{background:rgba(0,32,20,.4)}
+.btn.panic{background:var(--panic);border-color:#ff8181;color:#220000;font-weight:800}
+.topControls,.joinRow{display:flex;gap:10px;flex-wrap:wrap;padding:12px 14px}
+.joinRow input{flex:1;min-width:150px;padding:12px 14px;border-radius:12px;border:1px solid rgba(0,255,144,.22);background:rgba(0,25,15,.5);color:#dfffe8;outline:none}
+.roomsList{padding:0 14px 8px;display:flex;flex-wrap:wrap;gap:8px}
+.roomsList button{padding:6px 10px;border-radius:10px;border:1px solid rgba(0,255,144,.2);background:rgba(0,25,15,.45);color:#c8ffdf;cursor:pointer}
+.qrPanicRow{display:flex;gap:10px;padding:0 14px 10px}
+.qrBox{overflow:hidden;transition:max-height .35s ease, opacity .25s ease;max-height:0;opacity:0;margin:0 12px;border:1px dashed rgba(0,255,144,.18);border-radius:14px;background:rgba(0,22,14,.4)}
+.qrBox.open{max-height:420px;opacity:1;margin:0 12px 10px}
+.inviteLink{font-family:ui-monospace, SFMono-Regular, Menlo, monospace;color:var(--neon);font-size:12px;word-break:break-all;padding:10px}
+.qrRow{display:flex;justify-content:center;padding:6px 0}
+.qrcode{width:160px;height:160px}
+.qrActions{display:flex;gap:8px;justify-content:center;padding:8px}
+.qrActions .btn.small{padding:8px 10px;font-size:13px}
+.keyInfo{font-size:12px;color:rgba(210,255,230,.7);text-align:center;padding-bottom:8px}
+.chatArea{flex:1;overflow-y:auto;padding:14px;scroll-behavior:smooth;border-top:1px solid rgba(0,255,144,.08);border-bottom:1px solid rgba(0,255,144,.08)}
+.msgRow{display:flex;flex-direction:column;margin:8px 0;max-width:100%;align-items:flex-start}
+.msgRow.self{align-items:flex-end}
+.bubble{padding:10px 14px;border-radius:16px;max-width:78%;background:rgba(0,35,22,.7);border:1px solid rgba(0,255,144,.14);color:#eafff2;word-wrap:break-word;animation:pop .22s cubic-bezier(.2,.9,.3,1);display:inline-block;box-shadow:0 0 14px rgba(0,0,0,.35)}
+.bubble.mine{background:rgba(0,90,55,.85);border-color:rgba(0,255,144,.25)}
+@keyframes pop{from{opacity:0;transform:translateY(6px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+.reacts{display:flex;gap:8px;margin-top:6px}
+.reactBtn{background:rgba(0,35,24,.5);border:1px solid rgba(0,255,144,.12);padding:4px 9px;border-radius:18px;color:#b8ffd5;font-size:13px;cursor:pointer;display:flex;gap:6px;align-items:center}
+.reactBtn.active{background:linear-gradient(90deg,#00ff90,#00c779);color:#003319;font-weight:700}
+.reactBtn span{opacity:.85}
+.inputBar{display:flex;gap:10px;align-items:center;padding:10px 14px;background:rgba(0,20,12,.55);padding-bottom:calc(12px + env(safe-area-inset-bottom))}
+.inputBar textarea{flex:1;min-height:42px;max-height:160px;resize:none;padding:12px 14px;border-radius:14px;background:rgba(0,30,20,.55);border:1px solid rgba(0,255,144,.18);color:#eafff2;outline:none;line-height:1.3}
+.circle{width:44px;height:44px;border-radius:999px;border:1px solid rgba(0,255,144,.25);background:rgba(0,45,28,.7);color:var(--neon);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.18s}
+.circle.send{font-size:18px}
+.circle:hover{box-shadow:0 0 0 2px rgba(0,255,144,.18) inset, 0 0 12px var(--aura);transform:translateY(-1px)}
+.footerNote{font-size:12px;color:rgba(180,255,200,.7);text-align:center;padding:8px}
+@media (max-width:520px){.bubble{max-width:90%}}
+
+/* Active room highlight (minimal, non-intrusive) */
+.roomsList button.activeRoom{
+  outline: 2px solid var(--neon);
+  background: rgba(0,255,144,.08);
+}
